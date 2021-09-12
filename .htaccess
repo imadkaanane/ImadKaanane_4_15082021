@@ -1,8 +1,7 @@
 RewriteEngine On
 
 	## no-www -> www
-
-RewriteCond %{HTTP_HOST} ^www.imadkaanane.github.io/ImadKaanane_4_15082021/index.html$ [OU]
+RewriteCond %{HTTP_HOST} !^www\.
 RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L,NE,QSA]
 	## http -> https
 RewriteCond %{HTTPS} off
