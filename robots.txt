@@ -1,7 +1,2 @@
-User-agent: Googlebot
-Disallow: /nogooglebot/
 
-User-agent: *
-Allow: /
-
-Sitemap: https://imadkaanane.github.io/ImadKaanane_4_15082021/sitemap.xml
+Sitemap: imadkaanane.github.io/ImadKaanane_4_15082021/sitemap.xml
