@@ -1,0 +1,57 @@
+RewriteEngine On
+
+	## no-www -> www
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L,NE,QSA]
+	## http -> https
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L,NE,QSA]
+
+AddType 'text/html; charset=UTF-8' html
+
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  
+ # Images
+  ExpiresByType image/jpeg "access plus 31536000"
+  ExpiresByType image/gif "access plus 31536000"
+  ExpiresByType image/png "access plus 31536000"
+  ExpiresByType image/webp "access plus 31536000"
+  ExpiresByType image/svg+xml "access plus 31536000"
+  ExpiresByType image/x-icon "access plus 31536000"
+  # Video
+  ExpiresByType video/webm "access plus 31536000"
+  ExpiresByType video/mp4 "access plus 31536000"
+  ExpiresByType video/mpeg "access plus 31536000"
+  # Fonts
+  ExpiresByType font/ttf "access plus 31536000"
+  ExpiresByType font/otf "access plus 31536000"
+  ExpiresByType font/woff "access plus 31536000"
+  ExpiresByType font/woff2 "access plus 31536000"
+  ExpiresByType application/font-woff "access plus 31536000"
+  # CSS, JavaScript
+  ExpiresByType text/css "access plus 2629800"
+  ExpiresByType text/javascript "access plus 2629800"
+  ExpiresByType application/javascript "access plus 2629800"
+  # Others
+  ExpiresByType application/pdf "access plus 2629800"
+  ExpiresByType image/vnd.microsoft.icon "access plus 31536000"
+</IfModule>
+
+<IfModule mod_headers.c>
+
+    <FilesMatch "\\.(ico|jpe?g|png|bmp|woff|gif|swf|gz|ttf|webp)$">
+    Header set Cache-Control "max-age=31536000"
+    </FilesMatch>
+    <FilesMatch  "\\.(css)$">
+    Header set Cache-Control "max-age=31536000"
+    </FilesMatch>
+    <FilesMatch  "\\.(js)$">
+    Header set Cache-Control "max-age=31536000"
+    </FilesMatch>
+    <FilesMatch  "\\.(html|htm)$">
+    Header set Cache-Control "max-age=604800"
+    </FilesMatch >
+
+</IfModule>
